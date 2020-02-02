@@ -1,0 +1,4 @@
+Allergan:98927	3
+Baver:7085C	5
+Zentiva:86052	6
+Zentiva:9258C	3

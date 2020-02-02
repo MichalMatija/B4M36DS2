@@ -1,0 +1,23 @@
+#Vypis vsetky blocky, ktore obsahuju polozku(liek), ktory vyraba Baver alebo Allergan
+#Vypis cislo blocku, celkovu cenu blocka a vyrobcu
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX i: <http://db.cz/pharmacy/terms#>
+SELECT DISTINCT ?number ?price ?manufacturer
+WHERE {
+{
+	?bill rdf:type i:Bill .
+	?bill i:number ?number .
+	?bill i:totalPrice ?price .
+	?bill i:item [i:drug ?drug ] .
+	?drug i:manufacturer ?manufacturer .
+	FILTER (?manufacturer = "Baver")
+} union {
+	?bill rdf:type i:Bill .
+	?bill i:number ?number .
+	?bill i:totalPrice ?price .
+	?bill i:item [i:drug ?drug ] .
+	?drug i:manufacturer ?manufacturer .
+	FILTER (?manufacturer = "Allergan")
+}
+}

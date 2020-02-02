@@ -1,0 +1,11 @@
+#Vypis sumu vsetkych liekov za jednotlivych vyrobcov
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX i: <http://db.cz/pharmacy/terms#>
+SELECT ?manufacturer (sum(?totalItemPrice) as ?totalPrice)
+WHERE {
+	?bill rdf:type i:Bill .
+	?bill i:item [i:drug ?drug ; i:totalItemPrice ?totalItemPrice ] .
+	?drug i:manufacturer ?manufacturer .
+}
+GROUP BY ?manufacturer

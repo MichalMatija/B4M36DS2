@@ -1,0 +1,4 @@
+(: Pre bloček 2019399039 vypise mena vsetkych liekov, ktore boli predane. :)
+//drug[@code =
+data(//bill[@number = "2019399039"]/items/item/@idDrug)
+]/name/text()

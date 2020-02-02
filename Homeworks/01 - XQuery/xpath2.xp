@@ -1,0 +1,2 @@
+(: K osobe Martin prvý najdi všetký učtenky a výber poslednú a v nej najdi položku 86052 a vypíš všetky informácie o nej :)
+//bill[salesperson = //employee[name = "Martin prvý"]/@idCard][position() = last()]//item[@idDrug eq "86052"]

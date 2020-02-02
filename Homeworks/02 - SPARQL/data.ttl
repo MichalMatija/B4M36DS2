@@ -1,0 +1,120 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix i: <http://db.cz/pharmacy/terms#> .
+@prefix p: <http://db.cz/pharmacy> .
+
+p:employee1 
+  rdf:type i:Employee ;
+  i:id_card "001" ;
+  i:name [i:first "Martin" ; i:last "prvy"] ;
+  i:position "pharmacist" ;
+  i:started "1-12-2018" ;
+  i:terminated "31-03-2019" .
+
+p:employee2 
+  rdf:type i:Employee ;
+  i:id_card "002" ;
+  i:name [i:first "Lubos" ; i:last "Ferenc"] ;
+  i:position "pharmacy assistant" ;
+  i:started "1-12-2018" .
+
+p:employee3 
+  rdf:type i:Employee ;
+  i:id_card "003" ;
+  i:name [i:first "Janka" ; i:last "Novakova"] ;
+  i:position "pharmacist" ;
+  i:started "1-04-2019" .
+
+p:drug1 
+ rdf:type i:Drug ;
+ i:registrationNumber "29/0154/88-CS" ;
+ i:code "9258C" ;
+ i:name "Ibalgin 400" ;
+ i:description "tbl flm 100x400 mg (blis. PVC/Al)" ;
+ i:otc "Yes" ;
+ i:manufacturer "Zentiva" ;
+ i:expiration "01-10-2022" ;
+ i:stock "available" ;
+ i:price 144 .
+
+p:drug2 
+ rdf:type i:Drug ;
+ i:registrationNumber "29/0154/88-CS" ;
+ i:code "7880A" ;
+ i:name "Ibalgin 400" ;
+ i:description "tbl flm 48x400 mg (blis. PVC/Al)" ;
+ i:otc "Yes" ;
+ i:manufacturer "Zentiva" ;
+ i:expiration "01-10-2022" ;
+ i:stock "available" ;
+ i:price 123 .
+
+p:drug3 
+ rdf:type i:Drug ;
+ i:registrationNumber "EU/1/02/205/002" ;
+ i:code "98927" ;
+ i:name "LUMIGAN 0,3 mg/ml" ;
+ i:description "int opo 3x3 ml/0,9 mg  (fľ.LDPE)" ;
+ i:otc "No" ;
+ i:manufacturer "Allergan" ;
+ i:expiration "01-10-2021" ;
+ i:stock "available" ;
+ i:price 358 .
+
+p:drug4 
+ rdf:type i:Drug ;
+ i:registrationNumber "07/0148/78-CS" ;
+ i:code "86052" ;
+ i:name "Paralen 500" ;
+ i:description "tbl 24x500 mg (blis.Al/PVC)" ;
+ i:otc "Yes" ;
+ i:manufacturer "Zentiva" ;
+ i:expiration "01-05-2022" ;
+ i:stock "available" ;
+ i:price 46 .
+
+p:drug5
+ rdf:type i:Drug ;
+ i:registrationNumber "07/0067/18-S" ;
+ i:code "7085C" ;
+ i:name "Aspirin Express 500 mg" ;
+ i:description "tbl obd 40x500 mg (strip papier/PE/Al/kopolymér etylénu s kys.metakryl.)" ;
+ i:otc "Yes" ;
+ i:manufacturer "Baver" ;
+ i:expiration "01-09-2022" ;
+ i:stock "not available" ;
+ i:price 89 .
+
+p:bill1
+ rdf:type i:Bill ;
+ i:number "2019398593" ;
+ i:timestamp "2019-01-24+08:42" ;
+ i:salesperson p:employee1 ;
+ i:item [ i:drug p:drug1 ; i:quantity 2 ; i:totalItemPrice 288 ; ],
+        [ i:drug p:drug5 ; i:quantity 1 ; i:totalItemPrice 89 ; ] ;
+ i:totalPrice 377 .
+
+p:bill2
+ rdf:type i:Bill ;
+ i:number "2019399039" ;
+ i:timestamp "2019-02-23+10:27" ;
+ i:salesperson p:employee1 ;
+ i:item [ i:drug p:drug1 ; i:quantity 1 ; i:totalItemPrice 144 ; ],
+        [ i:drug p:drug4 ; i:quantity 3 ; i:totalItemPrice 138 ; ],
+        [ i:drug p:drug3 ; i:quantity 1 ; i:totalItemPrice 358 ; ] ;
+ i:totalPrice 640 .
+
+p:bill3
+ rdf:type i:Bill ;
+ i:number "2019399764" ;
+ i:timestamp "2019-05-10+12:54" ;
+ i:salesparson p:employee2 ;
+ i:item [ i:drug p:drug2 ; i:quantity 2 ; i:totalItemPrice 246 ; ] ;
+ i:totalPrice 246 .
+
+p:bill4
+ rdf:type i:Bill ;
+ i:number "2019399765" ;
+ i:timestamp "2019-05-10+18:35" ;
+ i:salesparson p:employee2 ;
+ i:item [ i:drug p:drug5 ; i:quantity 1 ; i:totalItemPrice 89 ; ] ;
+ i:totalPrice 89 .

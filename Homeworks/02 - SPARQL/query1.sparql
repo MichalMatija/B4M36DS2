@@ -1,0 +1,15 @@
+# Vypis vsetkych zamestnancov, ktory pracuju stale v lekarni alebo kedysi pracovali v lekarni 
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX i: <http://db.cz/pharmacy/terms#>
+SELECT ?card ?firsname ?lastname ?position ?started ?terminated
+WHERE {
+?e rdf:type i:Employee .
+?e i:id_card ?card .
+?e i:name ?b .
+?b i:first ?firsname .
+?b i:last ?lastname .
+?e i:position ?position .
+?e i:started ?started .
+OPTIONAL { ?e i:terminated ?terminated . }
+}

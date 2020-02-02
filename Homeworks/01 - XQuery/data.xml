@@ -1,0 +1,116 @@
+<pharmacy>
+    <employees>
+        <employee idCard="001">
+            <position>pharmacist</position>
+            <name>Martin prvý</name>
+            <start>1-12-2018</start>
+            <terminated>31-03-2019</terminated>
+        </employee>
+        <employee idCard="002">
+            <position>pharmacy assistant</position>
+            <name>Ľuboš Ferenc</name>
+            <start>1-12-2018</start>
+            <terminated/>
+        </employee>
+        <employee idCard="003">
+            <position>pharmacist</position>
+            <name>Janka Nováková</name>
+            <start>1-04-2019</start>
+            <terminated/>
+        </employee>
+    </employees>
+
+    <drugs>
+        <drug registrationNumber = "29/0154/88-CS" code="9258C">
+            <name>Ibalgin 400</name>
+            <description>tbl flm 100x400 mg (blis. PVC/Al)</description>
+            <otc>Yes</otc>
+            <manufacturer>Zentiva</manufacturer>
+            <expiration>01-10-2022</expiration>
+            <stock>available</stock>
+            <price>144</price>
+        </drug>
+        <drug registrationNumber = "29/0154/88-CS" code="7880A">
+            <name>Ibalgin 400</name>
+            <description>tbl flm 48x400 mg (blis. PVC/Al)</description>
+            <otc>Yes</otc>
+            <manufacturer>Zentiva</manufacturer>
+            <expiration>01-10-2022</expiration>
+            <stock>available</stock>
+            <price>123</price>
+        </drug>
+        <drug registrationNumber = "EU/1/02/205/002" code="98927">
+            <name>LUMIGAN 0,3 mg/ml</name>
+            <description>int opo 3x3 ml/0,9 mg  (fľ.LDPE)</description>
+            <otc>No</otc>
+            <manufacturer>Allergan</manufacturer>
+            <expiration>01-10-2021</expiration>
+            <stock>available</stock>
+            <price>358</price>
+        </drug>
+        <drug registrationNumber = "07/0148/78-CS" code="86052">
+            <name>Paralen 500</name>
+            <description>tbl 24x500 mg (blis.Al/PVC)</description>
+            <otc>Yes</otc>
+            <manufacturer>Zentiva</manufacturer>
+            <expiration>01-05-2022</expiration>
+            <stock>available</stock>
+            <price>46</price>
+        </drug>
+        <drug registrationNumber = "07/0067/18-S" code="7085C">
+            <name>Aspirin Express 500 mg</name>
+            <description>tbl obd 40x500 mg (strip papier/PE/Al/kopolymér etylénu s kys.metakryl.)</description>
+            <otc>Yes</otc>
+            <manufacturer>Baver</manufacturer>
+            <expiration>01-09-2022</expiration>
+            <stock>not available</stock>
+            <price>89</price>
+        </drug>
+    </drugs>
+
+
+    <bills>
+        <bill number="2019398593" timestamp="2019-01-24+08:42">
+            <salesperson>001</salesperson>
+            <items>
+                <item idDrug="9258C">
+                    <quantity>2</quantity>
+                    <totalItemPrice>288</totalItemPrice>
+                </item>
+                <item idDrug="7085C">
+                    <quantity>1</quantity>
+                    <totalItemPrice>89</totalItemPrice>
+                </item>
+            </items>
+            <totalPrice>377</totalPrice>
+        </bill>
+        <bill number="2019399039" timestamp="2019-02-23+10:27">
+            <salesperson>001</salesperson>
+            <items>
+                <item idDrug="9258C">
+                    <quantity>1</quantity>
+                    <totalItemPrice>144</totalItemPrice>
+                </item>
+                <item idDrug="86052">
+                    <quantity>3</quantity>
+                    <totalItemPrice>138</totalItemPrice>
+                </item>
+                <item idDrug="98927">
+                    <quantity>1</quantity>
+                    <totalItemPrice>358</totalItemPrice>
+                </item>
+            </items>
+            <totalPrice>640</totalPrice>
+        </bill>
+        <bill number="2019399764" timestamp="2019-05-10+12:54">
+            <salesperson>002</salesperson>
+            <items>
+                <item idDrug="7880A">
+                    <quantity>2</quantity>
+                    <totalItemPrice>246</totalItemPrice>
+                </item>
+            </items>
+            <totalPrice>246</totalPrice>
+        </bill>
+    </bills>
+</pharmacy>

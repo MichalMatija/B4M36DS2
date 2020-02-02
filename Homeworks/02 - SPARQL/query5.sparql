@@ -1,0 +1,20 @@
+#Vypis vsetky lieky na blockoch, ktore su volnopredajne a ich cena za jedno balenie je vacsia ako 100kc
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX i: <http://db.cz/pharmacy/terms#>
+SELECT ?number ?name ?code ?otc ?price
+WHERE {
+	?bill rdf:type i:Bill .
+	?bill i:item [i:drug ?drug ; ] .
+	?bill i:number ?number .
+	?drug i:name ?name .
+	?drug i:code ?code .
+	?drug i:otc ?otc .
+	?drug i:price ?price .
+	MINUS {
+		?bill i:item [i:drug ?drug ; ] .
+		?drug i:otc ?otc .
+		?drug i:price ?price .
+		FILTER ((?otc = "No") || (?price < 100))
+	}
+}

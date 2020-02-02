@@ -1,0 +1,15 @@
+# Vypis vsetky lieky, ktore su dostupne na sklade zoradene podla ceny vzostupne(asc)
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX i: <http://db.cz/pharmacy/terms#>
+SELECT ?name ?code ?otc ?price
+WHERE {
+?d rdf:type i:Drug .
+?d i:name ?name .
+?d i:code ?code .
+?d i:otc ?otc .
+?d i:stock ?stock .
+?d i:price ?price .
+FILTER ( ?stock = "available" )
+}
+ORDER BY ASC(?price)

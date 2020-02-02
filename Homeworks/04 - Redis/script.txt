@@ -1,0 +1,85 @@
+FLUSHDB
+echo "Zamestnanci"
+echo "key: typu object:id:nickname"
+echo "value: typu Firstname:Lastname:Position:Started:Terminated"
+SET "employee-string:1:prvmar" "Martin:Prvý:pharmacist:01-12-2018:31-03-2019"
+SET "employee-string:2:ferlub" "Ľuboš:Ferenc:pharmacy assistant:01-12-2018:"
+SET "employee-string:3:novjan" "Janka:Nováková:pharmacist:01-04-2019:"
+SET "employee-string:4:dobmar" "Marek:Dobrý:pharmacist:01-05-2019:"
+SET "employee-string:5:borjoz" "Jozef:Borbely:pharmacy assistant:01-12-2018:31-03-2019"
+
+GET "employee-string:4:dobmar"
+
+APPEND "employee-string:4:dobmar" "30-06-2019"
+
+DEL "employee-string:1:prvmar"
+
+echo "Zoznam vyrobcov"
+echo "key: typu object:version"
+echo "value: typu Id:Name"
+RPUSH "manufacturers-list:1" "657478:Zentiva"
+RPUSH "manufacturers-list:1" "537532:Allergan"
+RPUSH "manufacturers-list:1" "753582:Baver"
+RPUSH "manufacturers-list:1" "233533:Acylpyrin"
+RPUSH "manufacturers-list:1" "655343:Nurofen"
+
+RPOP "manufacturers-list:1"
+LINDEX "manufacturers-list:1" 3
+
+LREM "manufacturers-list:1" 1 "233533:Acylpyrin"
+
+echo "Mnozina dostupnych liekov"
+echo "key: typu object:property"
+echo "value: typu registrationNumber:code"
+SADD "drug-set:available" "29/0154/88-CS:9258C"
+SADD "drug-set:available" "29/0154/88-CS:7880A" 
+SADD "drug-set:available" "EU/1/02/205/002:98927" 
+SADD "drug-set:available" "07/0148/78-CS:86052"
+
+echo "Mnozina volnopredajnych liekov"
+echo "key: typu object:property"
+echo "value typu registrationNumber:code"
+SADD "drug-set:otc" "07/0067/18-S:7085C"
+SADD "drug-set:otc" "07/0148/78-CS:86052"
+SADD "drug-set:otc" "29/0154/88-CS:7880A"
+SADD "drug-set:otc" "29/0154/88-CS:9258C"
+
+echo "Je liek Aspirin dostupny?(Aspirin je v mnozine volnopredajnych liekov, ale nie je dostupny)"
+SISMEMBER "drug-set:available" "07/0067/18-S:7085C"
+
+echo "Zobraz vsetky lieky, ktore su dostupne a volnopredajne"
+SINTER "drug-set:available" "drug-set:otc"
+
+SREM "drug-set:available" "29/0154/88-CS:7880A"
+
+echo "Blocky s cenami"
+echo "key: typu object:month:year"
+echo "score: cost"
+echo "value: typu idBill"
+ZADD "bill-zset:01:2019" 377 "2019398593"
+ZADD "bill-zset:01:2019" 640 "2019399039"
+ZADD "bill-zset:01:2019" 246 "2019399764"
+ZADD "bill-zset:01:2019" 89 "2019399765"
+ZADD "bill-zset:01:2019" 481 "2019399766"
+
+ZRANGEBYSCORE "bill-zset:01:2019" 300 700
+
+echo "Reklamovanie lieku zmena ceny"
+ZINCRBY "bill-zset:01:2019" -358 "2019399766"
+
+ZREM "bill-zset:01:2019" 89 "2019399765"
+
+echo "Lieky"
+echo "key: typu object:registrationNumber:Code"
+echo "fields: name, description, manufacturer, price"
+HMSET "drug-hset:29/0154/88-CS:9258C" name "Ibalgin 400" description "tbl flm 100x400 mg (blis. PVC/Al)" manufacturer "657478" price "144"
+HMSET "drug-hset:29/0154/88-CS:7880A" name "Ibalgin 400" description "tbl flm 48x400 mg (blis. PVC/Al)" manufacturer "657478" price "123"
+HMSET "drug-hset:EU/1/02/205/002:98927" name "LUMIGAN 0,3 mg/ml" description "int opo 3x3 ml/0,9 mg  (fľ.LDPE)" manufacturer "537532" price "358"
+HMSET "drug-hset:07/0148/78-CS:86052" name "Paralen 500" description "tbl 24x500 mg (blis.Al/PVC)" manufacturer "657478" price "46"
+HMSET "drug-hset:07/0067/18-S:7085C" name "Aspirin Express 500 mg" description "tbl obd 40x500 mg (strip papier/PE/Al/kopolymér etylénu s kys.metakryl.)" manufacturer "753582" price "89"
+
+HGET "drug-hset:EU/1/02/205/002:98927" name
+
+HMGET "drug-hset:07/0067/18-S:7085C" name description price
+
+HDEL "drug-hset:07/0148/78-CS:86052" price
